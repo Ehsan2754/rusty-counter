@@ -194,9 +194,9 @@ impl Config {
     pub fn from_env() -> Result<Self, std::env::VarError> {
         Ok(Self {
             data_file_path: env::var("DATA_FILE_PATH")
-                .unwrap_or_else(|_| "./local_dir/data.bin".to_string()),
+                .unwrap_or_else(|_| "./data/data.bin".to_string()),
             backup_file_path: env::var("BACKUP_FILE_PATH")
-                .unwrap_or_else(|_| "./local_dir/backup.bin".to_string()),
+                .unwrap_or_else(|_| "./data/backup.bin".to_string()),
             backup_interval: env::var("BACKUP_INTERVAL")
                 .unwrap_or_else(|_| "3600".to_string())
                 .parse()
