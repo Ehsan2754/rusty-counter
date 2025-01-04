@@ -1,3 +1,5 @@
+use rocket_cors::{AllowedOrigins, CorsOptions};
+
 #[macro_use]
 extern crate rocket;
 
@@ -64,12 +66,20 @@ fn rocket() -> _ {
         "Starting server on {}:{}",
         config.service_ip, config.service_port
     );
+
+    let cors = CorsOptions::default()
+        .allowed_origins(AllowedOrigins::all())
+        .allow_credentials(true)
+        .to_cors()
+        .expect("Cors options should be valid");
+
     rocket::custom(
         rocket::Config::figment()
             .merge(("address", config.service_ip))
             .merge(("port", config.service_port)),
     )
     .manage(counter)
+    .attach(cors)
     .mount(
         "/",
         routes![
