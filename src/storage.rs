@@ -122,6 +122,15 @@ impl Counter {
         self.save();
     }
 
+    // Reset the counter
+    pub fn reset(&self) {
+        let mut value = self.value.lock().unwrap();
+        *value = (0).to_string(); // Reset the value
+        info!("Decremented value to: {}", *value);
+        drop(value);
+        self.save();
+    }
+
     // Get the current value
     pub fn get(&self) -> i32 {
         let value = self.value.lock().unwrap().clone();

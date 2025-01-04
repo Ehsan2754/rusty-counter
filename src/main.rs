@@ -22,7 +22,6 @@ fn rocket() -> _ {
     // Initialize the logger
     env_logger::init();
 
-
     // Print help for .env variables
     print_env_help();
 
@@ -73,7 +72,12 @@ fn rocket() -> _ {
     .manage(counter)
     .mount(
         "/",
-        routes![routes::get_value, routes::increment, routes::decrement],
+        routes![
+            routes::get_value,
+            routes::increment,
+            routes::decrement,
+            routes::reset
+        ],
     )
 }
 

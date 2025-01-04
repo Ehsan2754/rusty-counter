@@ -30,3 +30,11 @@ pub fn decrement(counter: &State<Arc<Counter>>) -> Json<Response> {
         value: counter.get(),
     })
 }
+
+#[post("/reset")]
+pub fn reset(counter: &State<Arc<Counter>>) -> Json<Response> {
+    counter.reset();
+    Json(Response {
+        value: counter.get(),
+    })
+}
