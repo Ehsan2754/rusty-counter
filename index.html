@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Counter Control</title>
+  <title>Rusty Counter</title>
   <style>
     body {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: linear-gradient(135deg, #2c3e50, #4ca1af);
+      background: linear-gradient(135deg, #2c3e50, #4caf50);
       font-family: Arial, sans-serif;
       margin: 0;
       color: #fff;
@@ -18,16 +18,16 @@
 
     .control-panel {
       text-align: center;
+      font-size: 28px;
       background: rgba(0, 0, 0, 0.7);
-      padding: 7%;
-      width: 56%;
-      height: 56%;
-      border-radius: 100%;
+      padding: 20px;
+      border-radius: 10px;
+      width: same-as-width;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
     .counter {
-      font-size: 4rem;
+      font-size: 7rem;
       margin: 20px 0;
       position: relative;
     }
@@ -51,15 +51,14 @@
     .buttons {
       display: flex;
       justify-content: center;
-      gap: 14px;
+      gap: 10px;
     }
 
     .buttons button {
       padding: 10px 20px;
-      font-size: 1rem;
+      font-size: 3rem;
       border: none;
-      height: 50px;
-      border-radius: 100%;
+      border-radius: 5px;
       cursor: pointer;
       background: #4ca1af;
       color: #fff;
@@ -73,15 +72,11 @@
 </head>
 <body>
   <div class="control-panel">
-    <div>
-        <br>
-        <br>
-    </div>
     <h1>✏️🏁</h1>
     <div class="counter"><span id="counter">0</span></div>
     <div class="buttons">
         <button onclick="decrementCounter()">🔻</button>
-        <button onclick="resetCounter()">↻</button>
+        <button onclick="resetCounter()">❤️‍🩹</button>
         <button onclick="incrementCounter()">▲</button>
     </div>
   </div>
@@ -140,8 +135,9 @@
       counterEl.classList.add(direction);
       setTimeout(() => counterEl.classList.remove(direction), 300);
     }
-    
+
     fetchCounter();
+    setInterval(fetchCounter,3000);
   </script>
 </body>
 </html>
