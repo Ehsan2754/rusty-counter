@@ -97,6 +97,40 @@ fn test_increment_and_decrement() {
         "The counter value should be '0' after decrementing"
     );
 }
+
+// Test case for counter value after incrementing and reseting
+#[test]
+fn test_reset() {
+    // Create a temporary directory for testing
+    let temp_dir = tempdir().expect("Failed to create temp dir");
+    let file_path = temp_dir.path().join("data.bin");
+    let backup_path = temp_dir.path().join("backup.bin");
+
+    // Create the counter instance
+    let counter = Counter::new(file_path.to_str().unwrap(), backup_path.to_str().unwrap());
+
+    // Initialize the counter
+    assert!(
+        counter.load_or_initialize(),
+        "Counter should initialize successfully"
+    );
+
+    // Increment the counter
+    counter.increment();
+    assert_eq!(
+        counter.get(),
+        1,
+        "The counter value should be '1' after incrementing"
+    );
+
+    counter.reset();
+    assert_eq!(
+        counter.get(),
+        0,
+        "The counter value should be '0' after reseting"
+    );
+}
+
 #[test]
 fn test_concurrent_increment_and_decrement() {
     // Create a temporary directory for testing
